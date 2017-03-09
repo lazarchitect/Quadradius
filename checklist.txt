@@ -1,0 +1,15 @@
+Checklist.
+
+1. Make list of powers, and make Power class take a random power with assigned probabilities.
+2. make game class? need a place to store the turn counter
+3. make orbs spawn
+4. Make GUI
+5. Make pieces movable (clicking)
+6. Make pieces killable via jump
+7. Make tiles elevatable and corrodable (implement raise, lower, wall, plateau, moat, trench)
+8. Implement basic torus abilities (Move Diagonal, F2S, Jump Proof, Climb)
+9. Implement RCR Powers Acidic, Destroy, Kamikaze, Pilfer, Teach, Tripwire, Recruit, Swap, Learn
+10. Implement Advanced Powers. Hotspot, Beneficiary, Grow Q, Multiply, Move Again, Snake Tunneling, Scavenger, Orb Spy, Parasite, Bankrupt, Bombs, Smart Bombs
+11. Optional: Network Bridge
+
+NOTE: at every step, update the GUI to reflect updates. Like elevation, Acid, etc. Tiles and Tori can have multiple effects so they need to overlap.

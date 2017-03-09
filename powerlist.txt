@@ -1,0 +1,26 @@
+Torus Allegiance Powers
+Recruit, Swap
+
+Tile Elevation Powers
+Wall, Plateau, Trench, Moat, Raise Tile, Lower Tile, Dredge, Invert
+
+Offensive Powers
+Tripwire, Destroy, Acidic, Kamikaze, Bombs, Smart Bombs, Inhibit, Snake Tunneling
+
+Intel/Stealing
+Parasite, Orb Spy, Pilfer
+
+Power Sharing Powers
+Beneficiary, Teach, Learn, Network Bridge?, Power Plant?
+
+Torus Upgrade Powers
+Climb, F2S, Move Diagonal, Jump Proof, Grow Quadradius, Scavenger, Switcheroo, Recursive, Invisible, Purify
+
+Torus Location Powers
+Relocate, Scramble, Centerpult
+
+Tile Mod Powers
+Bankrupt, Hotspot, Refurb
+
+Miscellaneous Powers
+Move Again, Multiply, Orbic Rehash
