@@ -9,10 +9,12 @@ powerList = {
 	"a": 3,
 	"c": 2
 }
-print("Hello, World!")
 
-s = "moveDiagonal"
+if __name__ == "__main__":
+	print("Hello, World!")
 
-powerList[s]
+	s = "moveDiagonal"
 
-print(random.choice(list(powerList.items())))
+	powerList[s]
+
+	print(random.choice(list(powerList.items())))

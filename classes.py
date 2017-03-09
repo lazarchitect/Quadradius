@@ -4,6 +4,7 @@
 #Not entirely sure what network bridge does but i think its cool. power plant is a mystery. dont want recursive. OP.
 
 import powers
+from random import choice, randint
 
 class Torus():
 
@@ -15,7 +16,7 @@ class Torus():
 		#note that being next to a wall or edge (unless you have climb or f2s) will limit this list. or ally presence
 		self.board = b
 	
-		self.powerList = []
+		self.powerList = [] #ideally will be a list of Power objects
 		self.abilities = {
 			"moveDiagonal":False, 
 			"climb": False, 
@@ -94,12 +95,21 @@ class Torus():
 
 class Power():
 	def __init__(self, name):
+		self.name = name
+		self.func = powers.powerList[name]
 		
+	def __str__(self):
+		return self.name	
 	
 class Orb():
-	def __init__(self):
-		self.power = Power()
+	def __init__(self, x, y, b):
+		self.power = Power(choice(list(powers.powerList.keys())))
+		self.x = x
+		self.y = y
+		self.board = b
 		
+	def __str__(self):
+		return str(self.x) +", " + str(self.y) +": " + str(self.power)	
 		
 class Tile():
 	def __init__(self, x, y):
@@ -146,3 +156,11 @@ class Board():
 				print(j.x,j.y," ", end = "")
 			print()
 			
+
+if __name__ == "__main__":
+	
+	x = randint(0, 7)
+	y = randint(0, 7)
+	
+	o = Orb(x,y)
+	print(o)
