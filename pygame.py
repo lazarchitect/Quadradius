@@ -2,7 +2,7 @@ import pygame
 from pygame.locals import *
 from classes import *
 
-def main():
+if __name__ == '__main__':
 	pygame.init()
 	windowX = 300
 	windowY = 400
@@ -15,6 +15,3 @@ def main():
 		for event in pygame.event.get():
 			if event.type == QUIT:
 				return
-
-
-if __name__ == '__main__': main()
