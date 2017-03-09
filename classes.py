@@ -98,7 +98,7 @@ class Power():
 	
 class Orb():
 	def __init__(self):
-		power
+		self.power = Power()
 		
 		
 class Tile():
