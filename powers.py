@@ -9,7 +9,7 @@ powerList = {
 	"a": 3,
 	"c": 2
 }
-
+print("Hello, World!")
 
 s = "moveDiagonal"
 
