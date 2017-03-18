@@ -8,7 +8,7 @@ Offensive Powers
 Tripwire, Destroy, Acidic, Kamikaze, Bombs, Smart Bombs, Inhibit, Snake Tunneling
 
 Intel/Stealing
-Parasite, Orb Spy, Pilfer
+Parasite, spyware, Pilfer
 
 Power Sharing Powers
 Beneficiary, Teach, Learn, Network Bridge?, Power Plant?
@@ -20,7 +20,7 @@ Torus Location Powers
 Relocate, Scramble, Centerpult
 
 Tile Mod Powers
-Bankrupt, Hotspot, Refurb
+Bankrupt, Hotspot, Refurb, Orb Spy, Bunker(creates walls that only be removed by leaving the bunker)
 
 Miscellaneous Powers
 Move Again, Multiply, Orbic Rehash

@@ -1,0 +1,53 @@
+Recruit	1
+Swap	3
+	
+Wall	5
+Plateau	5
+Trench	5
+Moat	3
+Raise Tile	5
+Lower Tile	5
+Dredge	3
+Invert	4
+	
+Tripwire	4
+Destroy	2
+Acidic	3
+Kamikaze	4
+Bombs	3
+Smart Bombs	1
+Inhibit	4
+Snake Tunneling	2
+	
+Parasite	3
+Orb Spy	4
+Pilfer	4
+	
+Beneficiary	4
+Teach	4
+Learn	4
+Network Bridge?	
+Power Plant?	
+	
+Climb	5
+F2S	4
+Move Diagonal	4
+Jump Proof	2
+Grow Quadradius	5
+Scavenger	3
+Switcheroo	
+Recursive	
+Invisible	
+Purify	4
+	
+Relocate	5
+Scramble	4
+Centerpult	
+	
+Bankrupt	2
+Hotspot	3
+Refurb	3
+	
+Move Again	4
+Multiply	4
+Orbic Rehash	5
