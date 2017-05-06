@@ -1,0 +1,8 @@
+Elements that the window should display
+
+1. The board. (duh)
+2. Chat?
+3. Power List
+4. Buttons (ff, settings(advanced feature), )
+5. Box to explain powers
+6. who gives a shit u can always add stuff later, get coding fgt

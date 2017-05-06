@@ -1,3 +1,5 @@
+#This fn is just for adding duplicates of powers to the powerlist for probability manipulation 
+#when selecting a power at random.
 def duplicate(func, num):
 	retval = []
 	for i in range(num):

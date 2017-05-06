@@ -3,7 +3,7 @@
 #Theres also switcheroo, centerpult, and power dump, which im thinking about implementing.
 #Not entirely sure what network bridge does but i think its cool. power plant is a mystery. dont want recursive. OP.
 
-import powers
+# import powers
 from random import choice, randint
 
 class Torus():
