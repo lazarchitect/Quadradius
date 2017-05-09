@@ -25,6 +25,10 @@ def populate(width, screen):
 			screen.blit(img, (x*tileWidth, y*tileHeight))
 	pygame.display.flip()		
 
+def drawInfoZone(b, screen):
+	pygame.draw.rect(screen, WHITE, infoZoneRect, 0)
+	pygame.display.update(infoZoneRect)
+
 def blitToScreen(b, screen, item, x, y):
 	className = type(item).__name__
 	if(className == "Orb"):
@@ -84,7 +88,7 @@ def validMove(srcTile, destTile):
 
 #Moves a torus from its current location to a desired adjacent Tile, GIVEN THAT THE DEST TILE IS VALID(HIGHLIGHTED). 
 #Returns true if the move happened. False if not.
-def move(b, screen, choiceTile):
+def move(b, screen, choiceTile, team):
 	#take new input. if THAT is on a highlighted tile, move the torus there, unhighlight all, return true. else, unhighlight all and return False
 	while 1:
 		for event in pygame.event.get():
@@ -95,9 +99,16 @@ def move(b, screen, choiceTile):
 				x = int(location[0]/tileWidth)
 				y = int(location[1]/tileHeight)
 
+				if x >= boardWidth: 
+					unHighlightAll(b, screen)
+					return False
+
 				destTile = b.grid[y][x]
 				if(destTile.isHighlighted == True):
 					
+					if type(destTile.item).__name__ == "Torus":
+						print("BOOM!")
+
 					destTile.item = choiceTile.item
 					blitToScreen(b, screen, destTile.item, destTile.y, destTile.x) #WHY IS IT Y THEN X? THIS IS BANANAS
 					choiceTile.item = None
@@ -116,8 +127,17 @@ def move(b, screen, choiceTile):
 			if event.type == pygame.QUIT or (event.type == pygame.KEYDOWN and event.key == pygame.K_F4):
 				exit()
 
+#Each turn, tell the player that its their turn.
+#Other tasks: display available powers, chatbox, FF button
+def updateInfoZone(b, screen):
+	pass
 
 
+#Should notify the winner if they destroyed all enemy pieces. A tie is also possible.
+#returns true if the game is over, and false if not.
+#if this returns true, break the game loop.
+def endCheck(b):
+	pass
 
 
 

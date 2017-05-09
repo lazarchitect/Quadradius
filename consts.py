@@ -1,19 +1,26 @@
+import pygame
 #This file defines some variables for use in the main program. 
 
 #Tile dimensions, in pixels
-tileWidth = 80
-tileHeight = 80
+tileWidth = 90
+tileHeight = 90
+tilesize = (tileWidth, tileHeight)
 
 #Board space dimensions, in Tiles
 boardWidth = 10
 boardHeight = 8
 
 #Screen dimensions, in pixels
-windowX = tileWidth*boardWidth
-windowY = tileHeight*boardHeight
-size = (windowX, windowY)
+screenWidth = tileWidth*boardWidth + 400
+screenHeight = tileHeight*boardHeight
+screensize = (screenWidth, screenHeight)
 
+infoZoneLeft = tileWidth * boardWidth
+infoZoneTop = 0
+infoZoneWidth = 400
+infoZoneHeight = screenHeight
 
+infoZoneRect = pygame.Rect(infoZoneLeft, infoZoneTop, infoZoneWidth, infoZoneHeight)
 
 #COLORS
 WHITE = (255, 255, 255)

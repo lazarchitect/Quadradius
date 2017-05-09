@@ -12,11 +12,16 @@ from functs import *
 pygame.init()
 b = Board()
 
-screen = pygame.display.set_mode(size)
+screen = pygame.display.set_mode(screensize)
 
+#initialize the board state
 draw_tiles(boardWidth, boardHeight, screen)
-
 populate(boardWidth, screen)
+
+#Intialize the "info zone"
+drawInfoZone(b, screen)
+
+currentTeam = 0 # 0 is red, 1 is blue
 
 #Gameplay loop
 while 1:
@@ -30,9 +35,12 @@ while 1:
 			x = int(location[0]/tileWidth)
 			y = int(location[1]/tileHeight)
 
+			if x >= boardWidth: 
+				break
+
 			choiceTile = b.grid[y][x]
-			if type(choiceTile.item).__name__ == "Torus":
-				#THEY HAVE CLICKED ON A TORUS
+			if type(choiceTile.item).__name__ == "Torus" and choiceTile.item.team == currentTeam:
+				#THEY HAVE CLICKED ON A (their own!) TORUS
 				if y != 0: 
 					upTile = b.grid[y-1][x]
 					if(validMove(choiceTile, upTile)):
@@ -50,8 +58,11 @@ while 1:
 					if(validMove(choiceTile, downTile)):
 						highlight(b, screen, x, y+1)
 
-				move(b, screen, choiceTile)		
-
+				result = move(b, screen, choiceTile, currentTeam)
+				
+				if result:
+					currentTeam = abs(1 - currentTeam)
+					endCheck(b)
 
 		if event.type == pygame.QUIT or (event.type == pygame.KEYDOWN and event.key == pygame.K_F4):
 			exit()
