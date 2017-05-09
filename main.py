@@ -50,9 +50,8 @@ while 1:
 					if(validMove(choiceTile, downTile)):
 						highlight(b, screen, x, y+1)
 
-				NEXT BIG STEP: GET THE TILES TO ACTUALLY MOVE
+				move(b, screen, choiceTile)		
 
-				# highlight(b, screen, x-1, y)
 
 		if event.type == pygame.QUIT or (event.type == pygame.KEYDOWN and event.key == pygame.K_F4):
 			exit()

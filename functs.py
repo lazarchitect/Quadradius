@@ -25,21 +25,23 @@ def populate(width, screen):
 	pygame.display.flip()		
 
 def blitToScreen(b, screen, item, x, y):
+	print("preparing to blit an item to the screen")
 	className = type(item).__name__
-	# print(className)
+	print(className)
 	if(className == "Orb"):
 		img = pygame.image.load("Orb.png")
 		img = pygame.transform.scale(img, (100, 100))
+		screen.blit(img, (x*100, y*100))
 	if(className == "Torus"):
+		print("Item confirmed Torus")
 		if(item.team == 0):
 			img = pygame.image.load("RedTorus.png")
 			img = pygame.transform.scale(img, (100, 100))
+			screen.blit(img, (x*100, y*100))
 		else:
 			img = pygame.image.load("BlueTorus.png")
 			img = pygame.transform.scale(img, (100, 100))
-	screen.blit(img, (x*100, y*100))
-	# pygame.display.update(pygame.Rect(x*100, y*100, 100, 100))
-			
+			screen.blit(img, (x*100, y*100))		
 
 #Given a tile's coordinates, makes it glow yellow
 def	highlight(b, screen, x, y):
@@ -83,7 +85,40 @@ def validMove(srcTile, destTile):
 	#Other checks later. height, acidic, etc
 	return True		
 
+#Moves a torus from its current location to a desired adjacent Tile, GIVEN THAT THE DEST TILE IS VALID(HIGHLIGHTED). 
+#Returns true if the move happened. False if not.
+def move(b, screen, choiceTile):
+	#take new input. if THAT is on a highlighted tile, move the torus there, unhighlight all, return true. else, unhighlight all and return False
+	while 1:
+		for event in pygame.event.get():
+			
+			if(pygame.mouse.get_pressed()[0]):
+			
+				location = pygame.mouse.get_pos()
+				x = int(location[0]/100)
+				y = int(location[1]/100)
 
+				destTile = b.grid[y][x]
+				if(destTile.isHighlighted == True):
+					
+					destTile.item = choiceTile.item
+					blitToScreen(b, screen, destTile.item, destTile.y, destTile.x)
+					choiceTile.item = None
+					img = pygame.image.load("Tile3.png")
+					img = pygame.transform.scale(img, (100, 100))
+					screen.blit(img, (choiceTile.y*100, choiceTile.x*100))
+					pygame.display.flip()
+					# pygame.display.update(pygame.Rect(choiceTile.y*100, choiceTile.x*100, 100, 100))
+
+					unHighlightAll(b, screen)
+					return True
+
+				else:
+					unHighlightAll(b, screen)
+					return False
+
+			if event.type == pygame.QUIT or (event.type == pygame.KEYDOWN and event.key == pygame.K_F4):
+				exit()
 
 
 
