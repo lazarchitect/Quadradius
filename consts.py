@@ -1,13 +1,19 @@
 #This file defines some variables for use in the main program. 
 
+#Tile dimensions, in pixels
+tileWidth = 80
+tileHeight = 80
+
+#Board space dimensions, in Tiles
+boardWidth = 10
+boardHeight = 8
+
 #Screen dimensions, in pixels
-windowX = 1000
-windowY = 800
+windowX = tileWidth*boardWidth
+windowY = tileHeight*boardHeight
 size = (windowX, windowY)
 
-#Board space dimensions
-width = 10
-height = 8
+
 
 #COLORS
 WHITE = (255, 255, 255)

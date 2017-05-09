@@ -14,9 +14,9 @@ b = Board()
 
 screen = pygame.display.set_mode(size)
 
-draw_tiles(width, height, screen)
+draw_tiles(boardWidth, boardHeight, screen)
 
-populate(width, screen)
+populate(boardWidth, screen)
 
 #Gameplay loop
 while 1:
@@ -27,8 +27,8 @@ while 1:
 
 			location = pygame.mouse.get_pos()
 			# print(location)
-			x = int(location[0]/100)
-			y = int(location[1]/100)
+			x = int(location[0]/tileWidth)
+			y = int(location[1]/tileHeight)
 
 			choiceTile = b.grid[y][x]
 			if type(choiceTile.item).__name__ == "Torus":

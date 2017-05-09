@@ -1,12 +1,13 @@
 import pygame
+from consts import *
 
 def draw_tiles(width, height, screen):
 	# retval = []
 	for x in range(width):
 		for y in range(height):
 			img = pygame.image.load("Tile3.png")
-			img = pygame.transform.scale(img, (100, 100))
-			screen.blit(img, (x*100, y*100))
+			img = pygame.transform.scale(img, (tileWidth, tileHeight))
+			screen.blit(img, (x*tileWidth, y*tileHeight))
 	pygame.display.flip()
 	# return retval
 
@@ -15,45 +16,41 @@ def populate(width, screen):
 	for x in range(width):
 		for y in range(2):
 			img = pygame.image.load("RedTorus.png")
-			img = pygame.transform.scale(img, (100, 100))
-			screen.blit(img, (x*100, y*100))
+			img = pygame.transform.scale(img, (tileWidth, tileHeight))
+			screen.blit(img, (x*tileWidth, y*tileHeight))
 	for x in range(width):
 		for y in range(6,8):
 			img = pygame.image.load("BlueTorus.png")
-			img = pygame.transform.scale(img, (100, 100))
-			screen.blit(img, (x*100, y*100))
+			img = pygame.transform.scale(img, (tileWidth, tileHeight))
+			screen.blit(img, (x*tileWidth, y*tileHeight))
 	pygame.display.flip()		
 
 def blitToScreen(b, screen, item, x, y):
-	print("preparing to blit an item to the screen")
 	className = type(item).__name__
-	print(className)
 	if(className == "Orb"):
 		img = pygame.image.load("Orb.png")
-		img = pygame.transform.scale(img, (100, 100))
-		screen.blit(img, (x*100, y*100))
+		img = pygame.transform.scale(img, (tileWidth, tileHeight))
+		screen.blit(img, (x*tileWidth, y*tileHeight))
 	if(className == "Torus"):
-		print("Item confirmed Torus")
 		if(item.team == 0):
 			img = pygame.image.load("RedTorus.png")
-			img = pygame.transform.scale(img, (100, 100))
-			screen.blit(img, (x*100, y*100))
+			img = pygame.transform.scale(img, (tileWidth, tileHeight))
+			screen.blit(img, (x*tileWidth, y*tileHeight))
 		else:
 			img = pygame.image.load("BlueTorus.png")
-			img = pygame.transform.scale(img, (100, 100))
-			screen.blit(img, (x*100, y*100))		
+			img = pygame.transform.scale(img, (tileWidth, tileHeight))
+			screen.blit(img, (x*tileWidth, y*tileHeight))
 
 #Given a tile's coordinates, makes it glow yellow
 def	highlight(b, screen, x, y):
 	img = pygame.image.load("Tile3Glow.png")
-	img = pygame.transform.scale(img, (100, 100))
-	screen.blit(img, (x*100, y*100))
+	img = pygame.transform.scale(img, (tileWidth, tileHeight))
+	screen.blit(img, (x*tileWidth, y*tileHeight))
 	
 	thing = b.grid[y][x].item
-	# print(thing)
 	if(thing != None):
 		blitToScreen(b, screen, thing, x, y)
-	pygame.display.update(pygame.Rect(x*100, y*100, 100, 100))
+	pygame.display.update(pygame.Rect(x*tileWidth, y*tileHeight, tileWidth, tileHeight))
 	b.grid[y][x].isHighlighted = True
 
 #Shuts off all glowing tiles, wherever they might be. Might be more efficient to keep track of any highlited tiles instead of checking all
@@ -62,12 +59,12 @@ def unHighlightAll(b, screen):
 		for x in range(10):
 			if(b.grid[y][x].isHighlighted == True):
 				img = pygame.image.load("Tile3.png")
-				img = pygame.transform.scale(img, (100, 100))
-				screen.blit(img, (x*100, y*100))
+				img = pygame.transform.scale(img, (tileWidth, tileHeight))
+				screen.blit(img, (x*tileWidth, y*tileHeight))
 				thing = b.grid[y][x].item
 				if(thing != None):
 					blitToScreen(b, screen, thing, x, y)
-				pygame.display.update(pygame.Rect(x*100, y*100, 100, 100))
+				pygame.display.update(pygame.Rect(x*tileWidth, y*tileHeight, tileWidth, tileHeight))
 				b.grid[y][x].isHighlighted = False
 
 #Checks if a move is valid... blegh im tired
@@ -95,20 +92,19 @@ def move(b, screen, choiceTile):
 			if(pygame.mouse.get_pressed()[0]):
 			
 				location = pygame.mouse.get_pos()
-				x = int(location[0]/100)
-				y = int(location[1]/100)
+				x = int(location[0]/tileWidth)
+				y = int(location[1]/tileHeight)
 
 				destTile = b.grid[y][x]
 				if(destTile.isHighlighted == True):
 					
 					destTile.item = choiceTile.item
-					blitToScreen(b, screen, destTile.item, destTile.y, destTile.x)
+					blitToScreen(b, screen, destTile.item, destTile.y, destTile.x) #WHY IS IT Y THEN X? THIS IS BANANAS
 					choiceTile.item = None
 					img = pygame.image.load("Tile3.png")
-					img = pygame.transform.scale(img, (100, 100))
-					screen.blit(img, (choiceTile.y*100, choiceTile.x*100))
+					img = pygame.transform.scale(img, (tileWidth, tileHeight))
+					screen.blit(img, (choiceTile.y*tileWidth, choiceTile.x*tileHeight)) #WTFFFF
 					pygame.display.flip()
-					# pygame.display.update(pygame.Rect(choiceTile.y*100, choiceTile.x*100, 100, 100))
 
 					unHighlightAll(b, screen)
 					return True
