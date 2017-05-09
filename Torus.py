@@ -80,4 +80,15 @@ class Torus():
 		#note that f2s, move diagonal, and climb affect validMoves
 		
 	def __str__(self):
-		return str(self.team)
+		if self.team == 0:
+			return "Red Torus"
+		return "Blue Torus"
+
+
+
+
+
+
+
+
+
