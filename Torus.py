@@ -77,7 +77,7 @@ class Torus():
 		pass
 		#removeFromPowerList()
 		#GainAbility()
-		#note that f2s, move diagonal, and climb affect validMoves
+		#note that f2s, move diagonal, and climb affect validMoves (already taken care of)
 		
 	def __str__(self):
 		if self.team == 0:

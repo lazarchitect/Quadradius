@@ -47,6 +47,7 @@ def blitToScreen(b, screen, item, x, y):
 
 #Given a tile's coordinates, makes it glow yellow
 def	highlight(b, screen, x, y):
+	#for the future: tiles have an elevation. Use that to determine which of 5 glowPNGs to use
 	img = pygame.image.load("Tile3Glow.png")
 	img = pygame.transform.scale(img, (tileWidth, tileHeight))
 	screen.blit(img, (x*tileWidth, y*tileHeight))
@@ -89,6 +90,10 @@ def validMove(srcTile, destTile):
 #Moves a torus from its current location to a desired adjacent Tile, GIVEN THAT THE DEST TILE IS VALID(HIGHLIGHTED). 
 #Returns true if the move happened. False if not.
 def move(b, screen, choiceTile, team):
+
+	global player1Score
+	global player2Score
+
 	#take new input. if THAT is on a highlighted tile, move the torus there, unhighlight all, return true. else, unhighlight all and return False
 	while 1:
 		for event in pygame.event.get():
@@ -107,7 +112,8 @@ def move(b, screen, choiceTile, team):
 				if(destTile.isHighlighted == True):
 					
 					if type(destTile.item).__name__ == "Torus":
-						print("BOOM!")
+						if(destTile.item.team == 0): player1Score -= 1
+						else: player2Score -= 1
 
 					destTile.item = choiceTile.item
 					blitToScreen(b, screen, destTile.item, destTile.y, destTile.x) #WHY IS IT Y THEN X? THIS IS BANANAS
@@ -129,19 +135,48 @@ def move(b, screen, choiceTile, team):
 
 #Each turn, tell the player that its their turn.
 #Other tasks: display available powers, chatbox, FF button
-def updateInfoZone(b, screen):
-	pass
+def updateInfoZone(b, screen, currentTeam):
+
+	global player1Score
+	global player2Score
+
+	pygame.draw.rect(screen, WHITE, infoZoneRect)
+	screen.blit(ARIAL.render("Player " + str(currentTeam + 1) + ", Your Turn", 0, BLACK), (infoZoneLeft+35, infoZoneTop))
+
+	screen.blit(ARIAL.render("Player 1's Score: " + str(player1Score), 0, BLACK), (infoZoneLeft+35, infoZoneTop + 100))
+	screen.blit(ARIAL.render("Player 2's Score: " + str(player2Score), 0, BLACK), (infoZoneLeft+35, infoZoneTop + 130))
+
+	pygame.display.update(infoZoneRect)
+
 
 
 #Should notify the winner if they destroyed all enemy pieces. A tie is also possible.
 #returns true if the game is over, and false if not.
 #if this returns true, break the game loop.
-def endCheck(b):
-	pass
+def endCheck():
+	
+	global player1Score
+	global player2Score
+
+	if player2Score == 0 or player1Score == 0:
+		return True
+	
+	return False	
 
 
+def displayResults(b, screen):
+	
+	global player1Score
+	global player2Score
 
+	pygame.draw.rect(screen, WHITE, infoZoneRect)
+	
+	if(player1Score == 0 and player2Score == 0):
+		screen.blit(ARIAL.render("It's a Tie!", 0, BLACK), (infoZoneLeft+35, infoZoneTop)) #Impossible to get a tie without the Kamikaze or Bombs powers
+	elif(player1Score == 0):
+		screen.blit(ARIAL.render("Player 2 Wins!", 0, BLACK), (infoZoneLeft+35, infoZoneTop))
+	elif(player2Score == 0):
+		screen.blit(ARIAL.render("Player 1 Wins!", 0, BLACK), (infoZoneLeft+35, infoZoneTop))
 
-
-
+	pygame.display.update(infoZoneRect)
 

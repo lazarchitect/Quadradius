@@ -1,4 +1,5 @@
 import pygame
+pygame.font.init()
 #This file defines some variables for use in the main program. 
 
 #Tile dimensions, in pixels
@@ -31,3 +32,10 @@ TEAL =  (  0, 128, 128)
 # GRAY3 = (130, 130, 130)
 # GRAY4 = (160, 160, 160)
 # GRAY5 = (180, 180, 180)
+
+#FONTS
+ARIAL = pygame.font.SysFont("arial", 30)
+
+#Player Scores
+player1Score = boardWidth * 2
+player2Score = boardWidth * 2

@@ -14,6 +14,8 @@ b = Board()
 
 screen = pygame.display.set_mode(screensize)
 
+ARIAL = pygame.font.SysFont("arial", 30)
+
 #initialize the board state
 draw_tiles(boardWidth, boardHeight, screen)
 populate(boardWidth, screen)
@@ -22,9 +24,13 @@ populate(boardWidth, screen)
 drawInfoZone(b, screen)
 
 currentTeam = 0 # 0 is red, 1 is blue
+gameOver = False
 
 #Gameplay loop
 while 1:
+
+	updateInfoZone(b, screen, currentTeam)
+
 	for event in pygame.event.get():
 		if(pygame.mouse.get_pressed()[0]):
 
@@ -62,14 +68,17 @@ while 1:
 				
 				if result:
 					currentTeam = abs(1 - currentTeam)
-					endCheck(b)
+					if endCheck():
+						gameOver = True
 
 		if event.type == pygame.QUIT or (event.type == pygame.KEYDOWN and event.key == pygame.K_F4):
 			exit()
 
-
+	if(gameOver):
+		break
 
 #Game Over loop
+displayResults(b, screen)
 while 1:
 	for event in pygame.event.get():
 		if event.type == pygame.QUIT or (event.type == pygame.KEYDOWN and event.key == pygame.K_F4):
