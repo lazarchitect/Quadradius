@@ -10,7 +10,7 @@ class Tile():
 		self.hasTorus = False #gets modified when tori initialized or when a piece moves here (or relocate)
 		self.isHighlighted = False #This is true if the til is a valid move destination for the chosen torus, and false otherwise
 		self.hasOrb = False
-		self.elevation = 2
+		self.elevation = 3
 		self.destroyed = False
 		self.mods = {
 			"bankrupt":False, 

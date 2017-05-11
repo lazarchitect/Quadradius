@@ -47,8 +47,11 @@ def blitToScreen(b, screen, item, x, y):
 
 #Given a tile's coordinates, makes it glow yellow
 def	highlight(b, screen, x, y):
-	#for the future: tiles have an elevation. Use that to determine which of 5 glowPNGs to use
-	img = pygame.image.load("Tile3Glow.png")
+
+	TIQ = b.grid[y][x] #tile in question
+	elev = TIQ.elevation
+
+	img = pygame.image.load("Tile"+str(elev)+"Glow.png")
 	img = pygame.transform.scale(img, (tileWidth, tileHeight))
 	screen.blit(img, (x*tileWidth, y*tileHeight))
 	
@@ -63,7 +66,12 @@ def unHighlightAll(b, screen):
 	for y in range(8):
 		for x in range(10):
 			if(b.grid[y][x].isHighlighted == True):
-				img = pygame.image.load("Tile3.png")
+				
+				TIQ = b.grid[y][x] #tile in question
+				elev = TIQ.elevation
+
+				img = pygame.image.load("Tile"+str(elev)+".png")
+
 				img = pygame.transform.scale(img, (tileWidth, tileHeight))
 				screen.blit(img, (x*tileWidth, y*tileHeight))
 				thing = b.grid[y][x].item
@@ -94,6 +102,8 @@ def move(b, screen, choiceTile, team):
 	global player1Score
 	global player2Score
 
+	toMove = choiceTile.item
+
 	#take new input. if THAT is on a highlighted tile, move the torus there, unhighlight all, return true. else, unhighlight all and return False
 	while 1:
 		for event in pygame.event.get():
@@ -111,9 +121,14 @@ def move(b, screen, choiceTile, team):
 				destTile = b.grid[y][x]
 				if(destTile.isHighlighted == True):
 					
-					if type(destTile.item).__name__ == "Torus":
+					if type(destTile.item).__name__ == "Torus": #If the detination contains a torus, (definitely an enemy)
 						if(destTile.item.team == 0): player1Score -= 1
 						else: player2Score -= 1
+
+					choiceTile.item.x = destTile.x ####ehhh???? The purpose of this is for easy access to row and col for abilities. ot sure if it works yet
+					choiceTile.item.y = destTile.y
+
+					#Also, not sure if changing Tile references here is good...
 
 					destTile.item = choiceTile.item
 					blitToScreen(b, screen, destTile.item, destTile.y, destTile.x) #WHY IS IT Y THEN X? THIS IS BANANAS
