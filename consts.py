@@ -39,3 +39,11 @@ ARIAL = pygame.font.SysFont("arial", 30)
 #Player Scores
 player1Score = boardWidth * 2
 player2Score = boardWidth * 2
+
+#Orb Values (initial, highly subject to change)
+moveCount = 0
+torusCount = 40 #Number of tori on the board
+n = 7 #The number of MOVES it takes for a new round of orbs to spawn, switches to three when torusCount drops below 21
+nCheck = 0
+low = int((40 - torusCount)/3)+2
+high = low + 1

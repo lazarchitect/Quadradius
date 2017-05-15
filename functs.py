@@ -1,5 +1,7 @@
 import pygame
 from consts import *
+from random import randint
+from Orb import Orb
 
 def draw_tiles(width, height, screen):
 	# retval = []
@@ -35,6 +37,7 @@ def blitToScreen(b, screen, item, x, y):
 		img = pygame.image.load("Orb.png")
 		img = pygame.transform.scale(img, (tileWidth, tileHeight))
 		screen.blit(img, (x*tileWidth, y*tileHeight))
+		b.grid[y][x].item = Orb(x, y, b)
 	if(className == "Torus"):
 		if(item.team == 0):
 			img = pygame.image.load("RedTorus.png")
@@ -79,6 +82,31 @@ def unHighlightAll(b, screen):
 					blitToScreen(b, screen, thing, x, y)
 				pygame.display.update(pygame.Rect(x*tileWidth, y*tileHeight, tileWidth, tileHeight))
 				b.grid[y][x].isHighlighted = False
+
+
+#This method triggers when a torus is moved, altering all relevant variables.
+def updateValues(b, screen):
+	global moveCount, nCheck, n, torusCount, low, high
+	moveCount+=1
+	nCheck += 1
+
+	if nCheck >= n:
+		nCheck = 0
+		spawnOrbs(b, screen)
+
+	tempCount = 0
+	for i in b.grid:
+		for j in i:
+			if type(j.item).__name__ == "Torus":
+				tempCount += 1
+	torusCount = tempCount
+	
+	if torusCount < 21: n = 3
+	else: n = 7
+
+	low = int((40 - torusCount)/3)+2
+	high = low + 1
+
 
 #Checks if a move is valid... blegh im tired
 def validMove(srcTile, destTile):
@@ -139,6 +167,7 @@ def move(b, screen, choiceTile, team):
 					pygame.display.flip()
 
 					unHighlightAll(b, screen)
+					updateValues(b, screen)
 					return True
 
 				else:
@@ -147,6 +176,17 @@ def move(b, screen, choiceTile, team):
 
 			if event.type == pygame.QUIT or (event.type == pygame.KEYDOWN and event.key == pygame.K_F4):
 				exit()
+
+def spawnOrbs(b, screen):
+	num = randint(low, high)
+	for i in range(num):
+		while 1:
+			x = randint(0, boardWidth-1)
+			y = randint(0, boardHeight-1)
+			if b.grid[y][x].item == None:
+				b.grid[y][x].item = Orb(x,y,b)
+				blitToScreen(b, screen, b.grid[y][x].item, x, y)
+				break
 
 #Each turn, tell the player that its their turn.
 #Other tasks: display available powers, chatbox, FF button
