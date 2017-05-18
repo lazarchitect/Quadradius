@@ -153,7 +153,11 @@ def move(b, screen, choiceTile, team):
 						if(destTile.item.team == 0): player1Score -= 1
 						else: player2Score -= 1
 
-					choiceTile.item.x = destTile.x ####ehhh???? The purpose of this is for easy access to row and col for abilities. ot sure if it works yet
+
+					if type(destTile.item).__name__ == "Orb":
+						choiceTile.item.powerList += destTile.item.power
+
+					choiceTile.item.x = destTile.x ####ehhh???? The purpose of this is for easy access to row and col for abilities. not sure if it works yet
 					choiceTile.item.y = destTile.y
 
 					#Also, not sure if changing Tile references here is good...

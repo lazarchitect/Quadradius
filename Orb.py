@@ -1,12 +1,13 @@
 #Orbs spawn into locatons on the board, given by x and y coords.
 #Each has a Power. When a Torus steps on an orb, it gets the power and the orb is destroyed.
 
-# from Power import Power
-# from random import choice
+from Power import Power
+from random import choice
+from powers import *
 
 class Orb():
 	def __init__(self, x, y, b):
-		self.power = None #Power(choice(list(powers.powerList.keys())))
+		self.power = Power(choice(list(powers.powerList.keys())))
 		self.x = x
 		self.y = y
 		self.board = b
