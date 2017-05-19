@@ -7,7 +7,7 @@ from powers import *
 
 class Orb():
 	def __init__(self, x, y, b):
-		self.power = Power(choice(list(powers.powerList.keys())))
+		self.power = Power(choice(powerList))
 		self.x = x
 		self.y = y
 		self.board = b

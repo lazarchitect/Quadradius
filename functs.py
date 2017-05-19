@@ -155,7 +155,8 @@ def move(b, screen, choiceTile, team):
 
 
 					if type(destTile.item).__name__ == "Orb":
-						choiceTile.item.powerList += destTile.item.power
+						choiceTile.item.powerList.append(destTile.item.power)
+						print(destTile.item.power)
 
 					choiceTile.item.x = destTile.x ####ehhh???? The purpose of this is for easy access to row and col for abilities. not sure if it works yet
 					choiceTile.item.y = destTile.y

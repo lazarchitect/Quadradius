@@ -134,6 +134,7 @@ powerList += duplicate(bankrupt, 2)
 powerList += duplicate(hotspot, 3)
 powerList += duplicate(orbSpy, 3) #ORB SPY ALLOWS U TOO SEE ORBS ON TILES
 powerList += duplicate(refurb, 3)
+#also bunker possibly
 
 powerList += duplicate(moveAgain, 4)
 powerList += duplicate(multiply, 4)
