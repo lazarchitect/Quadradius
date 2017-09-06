@@ -16,18 +16,18 @@ class Board():
 				elif(i==6 or i==7):
 					self.grid[i][j].item = Torus(1, i, j, self)
 					
-	def __str__(self):
-		retval = ""
-		for i in self.grid:
-			for j in i:
-				retval+=str(j)+", "
-			retval+="\n"
-		return retval	
+	# def __str__(self):
+	# 	retval = ""
+	# 	for i in self.grid:
+	# 		for j in i:
+	# 			retval+=str(j)+", "
+	# 		retval+="\n"
+	# 	return retval	
 
 
-	#Handy little method to show how the coordinate system works.
-	def printcoords(self):
-		for i in self.grid:
-			for j in i:
-				print(j.x,j.y," ", end = "")
-			print()			
+	# #Handy little method to show how the coordinate system works.
+	# def printcoords(self):
+	# 	for i in self.grid:
+	# 		for j in i:
+	# 			print(j.x,j.y," ", end = "")
+	# 		print()			

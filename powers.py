@@ -141,9 +141,9 @@ powerList += duplicate(multiply, 4)
 powerList += duplicate(orbicRehash, 5)
 
 
-if __name__ == "__main__":
-	import random
-	print(random.choice(powerList))
+# if __name__ == "__main__":
+# 	import random
+# 	print(random.choice(powerList))
 	
 	
 	
