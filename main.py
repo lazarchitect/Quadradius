@@ -1,10 +1,10 @@
 import pygame
 
-from Power import Power
-from Torus import Torus
-from Board import Board
-from Tile import Tile
-from Orb import Orb
+from classes.Power import Power
+from classes.Torus import Torus
+from classes.Board import Board
+from classes.Tile import Tile
+from classes.Orb import Orb
 
 from consts import *
 from functs import *

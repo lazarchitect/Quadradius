@@ -1,8 +1,8 @@
 #A Board class. exactly 1 is instatiated per game. All tiles and Tori have references to it.
 #Top left is (0, 0). Moving down increases the first value. Moving right increases the second.
 
-from Torus import Torus
-from Tile import Tile
+from classes.Torus import Torus
+from classes.Tile import Tile
 
 class Board():
 	def __init__(self):

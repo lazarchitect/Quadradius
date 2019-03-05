@@ -1,13 +1,13 @@
 import pygame
 from consts import *
 from random import randint
-from Orb import Orb
+from classes.Orb import Orb
 
 def draw_tiles(width, height, screen):
 	# retval = []
 	for x in range(width):
 		for y in range(height):
-			img = pygame.image.load("Tile3.png")
+			img = pygame.image.load("imgs/Tile3.png")
 			img = pygame.transform.scale(img, (tileWidth, tileHeight))
 			screen.blit(img, (x*tileWidth, y*tileHeight))
 	pygame.display.flip()
@@ -17,12 +17,12 @@ def draw_tiles(width, height, screen):
 def populate(width, screen):
 	for x in range(width):
 		for y in range(2):
-			img = pygame.image.load("RedTorus.png")
+			img = pygame.image.load("imgs/RedTorus.png")
 			img = pygame.transform.scale(img, (tileWidth, tileHeight))
 			screen.blit(img, (x*tileWidth, y*tileHeight))
 	for x in range(width):
 		for y in range(6,8):
-			img = pygame.image.load("BlueTorus.png")
+			img = pygame.image.load("imgs/BlueTorus.png")
 			img = pygame.transform.scale(img, (tileWidth, tileHeight))
 			screen.blit(img, (x*tileWidth, y*tileHeight))
 	pygame.display.flip()		
@@ -34,17 +34,17 @@ def drawInfoZone(b, screen):
 def blitToScreen(b, screen, item, x, y):
 	className = type(item).__name__
 	if(className == "Orb"):
-		img = pygame.image.load("Orb.png")
+		img = pygame.image.load("imgs/Orb.png")
 		img = pygame.transform.scale(img, (tileWidth, tileHeight))
 		screen.blit(img, (x*tileWidth, y*tileHeight))
 		b.grid[y][x].item = Orb(x, y, b)
 	if(className == "Torus"):
 		if(item.team == 0):
-			img = pygame.image.load("RedTorus.png")
+			img = pygame.image.load("imgs/RedTorus.png")
 			img = pygame.transform.scale(img, (tileWidth, tileHeight))
 			screen.blit(img, (x*tileWidth, y*tileHeight))
 		else:
-			img = pygame.image.load("BlueTorus.png")
+			img = pygame.image.load("imgs/BlueTorus.png")
 			img = pygame.transform.scale(img, (tileWidth, tileHeight))
 			screen.blit(img, (x*tileWidth, y*tileHeight))
 
@@ -54,7 +54,7 @@ def	highlight(b, screen, x, y):
 	TIQ = b.grid[y][x] #tile in question
 	elev = TIQ.elevation
 
-	img = pygame.image.load("Tile"+str(elev)+"Glow.png")
+	img = pygame.image.load("imgs/Tile"+str(elev)+"Glow.png")
 	img = pygame.transform.scale(img, (tileWidth, tileHeight))
 	screen.blit(img, (x*tileWidth, y*tileHeight))
 	
@@ -73,7 +73,7 @@ def unHighlightAll(b, screen):
 				TIQ = b.grid[y][x] #tile in question
 				elev = TIQ.elevation
 
-				img = pygame.image.load("Tile"+str(elev)+".png")
+				img = pygame.image.load("imgs/Tile"+str(elev)+".png")
 
 				img = pygame.transform.scale(img, (tileWidth, tileHeight))
 				screen.blit(img, (x*tileWidth, y*tileHeight))
@@ -166,7 +166,7 @@ def move(b, screen, choiceTile, team):
 					destTile.item = choiceTile.item
 					blitToScreen(b, screen, destTile.item, destTile.y, destTile.x) #WHY IS IT Y THEN X? THIS IS BANANAS
 					choiceTile.item = None
-					img = pygame.image.load("Tile3.png")
+					img = pygame.image.load("imgs/Tile3.png")
 					img = pygame.transform.scale(img, (tileWidth, tileHeight))
 					screen.blit(img, (choiceTile.y*tileWidth, choiceTile.x*tileHeight)) #WTFFFF
 					pygame.display.flip()
